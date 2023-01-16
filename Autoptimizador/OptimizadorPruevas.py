@@ -182,6 +182,7 @@ while True:
             each["narrative"] = each["narrative"].replace("Head southwest", "Dirigete al sudoeste")
             each["narrative"] = each["narrative"].replace("Head west", "Dirigete al oeste")
             each["narrative"] = each["narrative"].replace("Head east", "Dirigete al este")
+            each["narrative"] = each["narrative"].replace("Make a U", "Has una U")
             
             #ejemplo Toyota, Camry AWD SE, Mid-size, 4, AS8, X, 9.4, 6.8
 
