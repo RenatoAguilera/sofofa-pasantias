@@ -199,7 +199,5 @@ while True:
             
             distance = distance_remaining
             time.sleep(tiempoRec)
-        mapa = folium.Map(llocation = origin, zoom_start=16)
-        mapa.save("mapaPueva.html")
-        print("\nSi estará más de unos minutos estacionado recuerde apagar el motor.")
+        print("\nSi estará más de unos minutos estacionado recuerde apagar el motor.\n")
         bocinas.speak("Si estará más de unos minutos estacionado recuerde apagar el motor")
