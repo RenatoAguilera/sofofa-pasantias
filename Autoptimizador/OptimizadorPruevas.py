@@ -103,7 +103,7 @@ while True:
                 print("Antes que nada arranca el motor sin pisar el acelerador y comienza en 1ª")
                 print("Cambia a 2ª despues de avanzar unos 6 metros o unos 2 segundos aprox")
                 print("Realiza los cambios entre 3ª, 4ª y 5ª cada 2000 rpm aprox")
-                print("Si te guias más por la velocidad cambia a 3ª a los 30 km/h, a 4ª a los 40 km/h, a 5ª a los 50 km/h")
+                #print("Si te guias más por la velocidad cambia a 3ª a los 30 km/h, a 4ª a los 40 km/h, a 5ª a los 50 km/h")
                 print("Recueda circular en 4ª y 5ª a bajas revoluciones")
                 print("Manten en lo posible una velocidad uniforme durante el trayecto, evita frenazos, aceleraciones y cambios innecesarios.")
                 print("Para desacelerar levantar el pie del acelerador y dejar andar el vehículo con el cambio puesto, sin reducirlo")
@@ -135,9 +135,9 @@ while True:
                 recomendaciones = "(¡Su gasolina estará llegando a niveles criticos!, por favor recarge su tanque)"
             else:
                 recomendaciones = ""
-            
+            #reduccion de velocidad al asar muy rapido a a destiempo
             if gasoVehiculo:
-                recomendos = "()"
+                recomendos = ""
             else:
                 recomendos = ""
                        
