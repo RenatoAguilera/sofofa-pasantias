@@ -139,7 +139,15 @@ while True:
             each["narrative"] = each["narrative"].replace(" right.", " a la dercha.")
             each["narrative"] = each["narrative"].replace(" left.", " a la izquierda.")
             each["narrative"] = each["narrative"].replace(" Go for", " Continua por")
-            each["narrative"] = each["narrative"].replace("Take ramp", " Toma la rampa")
+            each["narrative"] = each["narrative"].replace("Take ramp", "Toma la rampa")
+            each["narrative"] = each["narrative"].replace("Head northeast", "Dirigete al noreste")
+            each["narrative"] = each["narrative"].replace("Head north", "Dirigete al norte")
+            each["narrative"] = each["narrative"].replace("Head northwest", "Dirigete al noroeste")
+            each["narrative"] = each["narrative"].replace("Head south", "Dirigete al sur")
+            each["narrative"] = each["narrative"].replace("Head southeast", "Dirigete al sudeste")
+            each["narrative"] = each["narrative"].replace("Head southwest", "Dirigete al sudoeste")
+            each["narrative"] = each["narrative"].replace("Head west", "Dirigete al oeste")
+            each["narrative"] = each["narrative"].replace("Head east", "Dirigete al este")
             
             #ejemplo Toyota, Camry AWD SE, Mid-size, 4, AS8, X, 9.4, 6.8
 
@@ -153,6 +161,6 @@ while True:
             +" ("+str("{:.2f}".format(distance_rec))+" Kilometros recorridos)"
             +" ("+str("{:.2f}".format(consumido))+" Litros de gasolina consumidos)"
             +" ("+str("{:.2f}".format(gasoVehiculo))+" Litros de gasolina restante)"
-            +" "+recomendaciones)
+            +" "+recomendaciones+recomendos)
             
             distance = distance_remaining

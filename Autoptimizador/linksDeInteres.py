@@ -22,5 +22,7 @@
 #asis
 #https://blog.facialix.com/tutorial-programar-un-asistente-virtual-con-python-usando-jarvisai/
 
-#api pra cords
-#https://developer.mapquest.com/documentation/geocoding-api/
+#recomendaciones
+#https://www.icarcheck.cl/blog/a/mundo-tuerca/consejos/ahorrar-bencinas
+#https://www.t13.cl/noticia/negocios/las-recomendaciones-ahorrar-y-optimizar-bencina
+#https://www.consumovehicular.cl/consejos/conduccion
