@@ -11,13 +11,30 @@ df.columns = ['Año Modelo','Marca','Modelo','Clase Vehiculo','Tamaño Maquina(L
 'Consumo Fuel(Consumo Combinado(mpg(millas por galon))','CO2 emiciones(g/km)','CO2 Rating','Smog Rating']
 
 #seleccionar veiculo
-
-buscaMarca = str(input("Ingrese la marca de su vehículo: "))        
-buscaModelo = str(input("Ingrese el modelo de su vehículo: "))        
-buscaClase = str(input("Ingrese la clase de su vehículo: "))
-buscaCilindros = int(input("Ingrese la cantida de cilindros de su vehículo: "))       
-buscaTransmicion = str(input("Ingrese la transmicion de su vehículo: "))   
-buscaCombustible = str(input("Ingrese el tipo de convustible de su vehículo: "))
+while True:
+    buscaMarca = str(input("Ingrese la marca de su vehículo: "))
+    if buscaMarca == df['Marca']: 
+        break  
+while True: 
+    buscaModelo = str(input("Ingrese el modelo de su vehículo: ")) 
+    if buscaModelo == df['Modelo']: 
+        break
+while True:         
+    buscaClase = str(input("Ingrese la clase de su vehículo: "))
+    if buscaClase == df['Clase Vehiculo']: 
+        break
+while True:  
+    buscaCilindros = int(input("Ingrese la cantida de cilindros de su vehículo: ")) 
+    if buscaCilindros == df['Cilindros']: 
+        break
+while True:        
+    buscaTransmicion = str(input("Ingrese la transmicion de su vehículo: "))
+    if buscaTransmicion == df['Transmicion']: 
+        break
+while True:   
+    buscaCombustible = str(input("Ingrese el tipo de convustible de su vehículo: "))
+    if buscaCombustible == df['Tipo Fuel']: 
+        break
 
 #Filtro
 filtroV = df[(df["Marca"]==buscaMarca) & (df["Modelo"]==buscaModelo) & (df["Clase Vehiculo"]==buscaClase) 
@@ -93,8 +110,8 @@ while True:
         print("Indicacioens del Viaje\n")
         
         bocinas.speak("¿Desea escuchar unas indicaciones generales antes de comenzar?")
+        print("¿Desea ver escuchar indicaciones generales antes de comenzar?\n")
         while True:
-            print("¿Desea ver escuchar indicaciones generales antes de comenzar?\n")
             indicacionesIn = input(str("¿si o no?: ")) 
             print("\n")
 
