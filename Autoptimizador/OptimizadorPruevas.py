@@ -87,10 +87,40 @@ while True:
         laFAfa = consumoNece*1349.40#precio medio convustible
         print("Necesitaras: $"+str("{:.2f}".format(laFAfa)+" aproximadamnte"))
         
+        #recomendaciones
+
         print("---------------------------------------------------------------------------")
-        print("Indicacioens del Viaje")
-        print("Recuerda arrancar el motor sin pisar el acelerador.")
-        bocinas.speak("Recuerda arrancar el motor sin pisar el acelerador")
+        print("Indicacioens del Viaje\n")
+        
+        bocinas.speak("¿Desea escuchar unas indicaciones generales antes de comenzar?")
+        while True:
+            print("¿Desea ver escuchar indicaciones generales antes de comenzar?\n")
+            indicacionesIn = input(str("¿si o no?: ")) 
+            print("\n")
+
+            indicacionesIn = indicacionesIn.lower()
+            if indicacionesIn == "si":
+                print("Antes que nada arranca el motor sin pisar el acelerador y comienza en 1ª")
+                print("Cambia a 2ª despues de avanzar unos 6 metros o unos 2 segundos aprox")
+                print("Realiza los cambios entre 3ª, 4ª y 5ª cada 2000 rpm aprox")
+                print("Si te guias más por la velocidad cambia a 3ª a los 30 km/h, a 4ª a los 40 km/h, a 5ª a los 50 km/h")
+                print("Recueda circular en 4ª y 5ª a bajas revoluciones")
+                print("Manten en lo posible una velocidad uniforme durante el trayecto, evita frenazos, aceleraciones y cambios innecesarios.")
+                print("Para desacelerar levantar el pie del acelerador y dejar andar el vehículo con el cambio puesto, sin reducirlo")
+                print("Y para frenar haslo suave y progresivo con el pedal de freno y reduce el cambio lo más tarde posible")
+
+                bocinas.speak("Antes que nada arranca el motor sin pisar el acelerador y comienza en primera")
+                bocinas.speak("Cambia a segunda despues de avanzar unos 6 metros o unos 2 segundos aprox")
+                bocinas.speak("Realiza los cambios entre tercera, cuarta y quinta cada 2000 revoluciones por minuto aprox")
+                bocinas.speak("Si te guias más por la velocidad cambia a tercera a los 30 kilometros por hora, a cuarta a los 40 kilometros por hora, a quinta a los 50 kilometros por hora")
+                bocinas.speak("Recueda circular en cuarta y quinta a bajas revoluciones")
+                bocinas.speak("Manten en lo posible una velocidad uniforme durante el trayecto, evita frenazos, aceleraciones y cambios innecesarios")
+                bocinas.speak("Para desacelerar levantar el pie del acelerador y dejar andar el vehículo con el cambio puesto, sin reducirlo")
+                bocinas.speak("Y para frenar haslo suave y progresivo con el pedal de freno y reduce el cambio lo más tarde posible")
+                break
+            if indicacionesIn == "no":
+                bocinas.speak("obteniedo ruta")
+                break
 
         print("---------------------------------------------------------------------------")
             
@@ -99,6 +129,7 @@ while True:
             distance_rec = distance - distance_remaining
             consumido = porKm * distance_rec
             gasoVehiculo = gasoVehiculo - consumido
+            tiempoRec = distance_rec * 60 #por tener una velocidad
             
             if gasoVehiculo < gasoVehiculo*15/100:
                 recomendaciones = "(¡Su gasolina estará llegando a niveles criticos!, por favor recarge su tanque)"
@@ -167,6 +198,6 @@ while True:
             +" "+recomendaciones+recomendos)
             
             distance = distance_remaining
-        
-        print("Si estará más de unos minutos estacionado recuerde apagar el motor.")
+            time.sleep(tiempoRec)
+        print("\nSi estará más de unos minutos estacionado recuerde apagar el motor.")
         bocinas.speak("Si estará más de unos minutos estacionado recuerde apagar el motor")
