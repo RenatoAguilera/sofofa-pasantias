@@ -27,3 +27,4 @@
 #https://www.t13.cl/noticia/negocios/las-recomendaciones-ahorrar-y-optimizar-bencina
 #https://www.consumovehicular.cl/consejos/conduccion
 #https://www.educacionvial.cl/categoria/material-estudio/claves-para-ahorrar-el-consumo-de-combustible
+#https://www.cursosgis.com/visualizar-mapas-con-python-y-la-libreria-folium/

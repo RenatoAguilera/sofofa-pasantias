@@ -92,8 +92,8 @@ while True:
         print("---------------------------------------------------------------------------")
         print("Indicacioens del Viaje\n")
         
-        bocinas.speak("¿Desea escuchar unas indicaciones generales antes de comenzar?")
         print("¿Desea ver escuchar indicaciones generales antes de comenzar?\n")
+        bocinas.speak("¿Desea escuchar unas indicaciones generales antes de comenzar?")
         while True:
             indicacionesIn = input(str("¿si o no?: ")) 
             print("\n")
@@ -199,5 +199,7 @@ while True:
             
             distance = distance_remaining
             time.sleep(tiempoRec)
+        mapa = folium.Map(llocation = origin, zoom_start=16)
+        mapa.save("mapaPueva.html")
         print("\nSi estará más de unos minutos estacionado recuerde apagar el motor.")
         bocinas.speak("Si estará más de unos minutos estacionado recuerde apagar el motor")
