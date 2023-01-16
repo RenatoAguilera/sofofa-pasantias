@@ -89,6 +89,9 @@ while True:
         
         print("---------------------------------------------------------------------------")
         print("Indicacioens del Viaje")
+        print("Recuerda arrancar el motor sin pisar el acelerador.")
+        bocinas.speak("Recuerda arrancar el motor sin pisar el acelerador")
+
         print("---------------------------------------------------------------------------")
             
         for each in json_data["route"]["legs"][0]["maneuvers"]:
@@ -164,3 +167,6 @@ while True:
             +" "+recomendaciones+recomendos)
             
             distance = distance_remaining
+        
+        print("Si estará más de unos minutos estacionado recuerde apagar el motor.")
+        bocinas.speak("Si estará más de unos minutos estacionado recuerde apagar el motor")
