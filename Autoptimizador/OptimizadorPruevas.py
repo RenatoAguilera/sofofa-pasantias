@@ -135,7 +135,7 @@ while True:
                 recomendaciones = "(¡Su gasolina estará llegando a niveles criticos!, por favor recarge su tanque)"
             else:
                 recomendaciones = ""
-            #reduccion de velocidad al asar muy rapido a a destiempo
+            #reduccion de velocidad al abansar muy rapido o a destiempo
             if gasoVehiculo:
                 recomendos = ""
             else:
