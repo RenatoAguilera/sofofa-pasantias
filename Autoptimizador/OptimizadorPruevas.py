@@ -28,8 +28,10 @@ filtroV = df[(df["Marca"]==buscaMarca) & (df["Modelo"]==buscaModelo) & (df["Clas
 #ejemplo Toyota, Camry AWD SE, Mid-size, 4, AS8, X, 9.4, 6.8
 
 print("-------------------------------------------------------------------------")
-
-gasoVehiculo = int(input("Ingresa la gasolina de tu vehículo en Mililitros o en Litros: "))
+while True:
+    gasoVehiculo = int(input("Ingresa la gasolina de tu vehículo en Mililitros o en Litros: "))
+    if gasoVehiculo != "":
+        break
 #cambio a litross
 if gasoVehiculo > 120.0:
     gasoVehiculo = gasoVehiculo/1000.0   
@@ -159,7 +161,7 @@ while True:
             distance_rec = distance - distance_remaining
             consumido = porKm * distance_rec
             gasoVehiculo = gasoVehiculo - consumido
-            tiempoRec = distance_rec * 60 #por tener una velocidad
+            tiempoRec = distance_remaining * 60 #por tener una velocidad
             
             if gasoVehiculo < gasoVehiculo*15/100:
                 recomendaciones = "(¡Su gasolina estará llegando a niveles criticos!, por favor recarge su tanque)"
