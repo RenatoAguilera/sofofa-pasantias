@@ -26,12 +26,15 @@ buscaCombustible = str(input("Ingrese el tipo de convustible de su vehículo: ")
 filtroV = df[(df["Marca"]==buscaMarca) & (df["Modelo"]==buscaModelo) & (df["Clase Vehiculo"]==buscaClase) 
 & (df["Cilindros"]==buscaCilindros) & (df["Transmicion"]==buscaTransmicion) & (df["Tipo Fuel"]==buscaCombustible)]
 #ejemplo Toyota, Camry AWD SE, Mid-size, 4, AS8, X, 9.4, 6.8
-
 print("-------------------------------------------------------------------------")
 while True:
-    gasoVehiculo = int(input("Ingresa la gasolina de tu vehículo en Mililitros o en Litros: "))
-    if gasoVehiculo != "":
-        break
+    try:
+        gasoVehiculo = int(input("Ingresa la gasolina de tu vehículo en Mililitros o en Litros: "))
+        if gasoVehiculo != "":
+            break
+    except ValueError:
+        print("Por favor, ingrese un valor valido. Ej: 69")
+
 #cambio a litross
 if gasoVehiculo > 120.0:
     gasoVehiculo = gasoVehiculo/1000.0   
@@ -149,10 +152,10 @@ while True:
         map = folium.Map(localizacion1=[latitude1, longitude1], zoom_start=1)
 
         # Punto 1
-        map.add_child(folium.Marker(punto1, popup=localizacion1, icon=folium.Icon(color='green')))
+        map.add_child(folium.Marker(punto1, popup=localizacion1, icon=folium.Icon(color='green', icon="car-side", prefix="fa")))
 
         # Punto 2
-        map.add_child(folium.Marker(punto2, popup=localizacion2, icon=folium.Icon(color='red')))
+        map.add_child(folium.Marker(punto2, popup=localizacion2, icon=folium.Icon(color='red', icon="flag-checkered", prefix="fa")))
 
         map.save("map.html")
         print("---------------------------------------------------------------------------")
