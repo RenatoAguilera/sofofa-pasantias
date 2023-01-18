@@ -159,7 +159,7 @@ while True:
             distance_rec = distance - distance_remaining
             consumido = porKm * distance_rec
             gasoVehiculo = gasoVehiculo - consumido
-            #tiempoRec = distance_rec * 60 #por tener una velocidad
+            tiempoRec = distance_rec * 60 #por tener una velocidad
             
             if gasoVehiculo < gasoVehiculo*15/100:
                 recomendaciones = "(¡Su gasolina estará llegando a niveles criticos!, por favor recarge su tanque)"
