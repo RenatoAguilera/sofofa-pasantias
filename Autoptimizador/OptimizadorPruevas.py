@@ -126,17 +126,15 @@ while True:
                 break
 
         print("---------------------------------------------------------------------------")
-            #mapa
+
         localizacion1 = origin
         print("Primer punto -> " , localizacion1)
         location1 = app.geocode(localizacion1).raw
         latitude1 = location1["lat"]
         longitude1 = location1["lon"]
-
         punto1 = (latitude1, longitude1)
 
         print(punto1)
-
         localizacion2 = destination
         print("Segundo punto -> " , localizacion2)
 
@@ -146,7 +144,6 @@ while True:
 
         punto2 = (latitude2, longitude2)
         print(punto2)
-
         map = folium.Map(localizacion1=[latitude1, longitude1], zoom_start=1)
 
         # Punto 1
@@ -155,16 +152,14 @@ while True:
         # Punto 2
         map.add_child(folium.Marker(punto2, popup=localizacion2, icon=folium.Icon(color='red')))
 
-        map.save("mapen.html")
-
-
-        #print("---------------------------------------------------------------------------")
+        map.save("map.html")
+        print("---------------------------------------------------------------------------")
         for each in json_data["route"]["legs"][0]["maneuvers"]:
             distance_remaining = distance - each["distance"]*1.61
             distance_rec = distance - distance_remaining
             consumido = porKm * distance_rec
             gasoVehiculo = gasoVehiculo - consumido
-            tiempoRec = distance_rec * 60 #por tener una velocidad
+            #tiempoRec = distance_rec * 60 #por tener una velocidad
             
             if gasoVehiculo < gasoVehiculo*15/100:
                 recomendaciones = "(¡Su gasolina estará llegando a niveles criticos!, por favor recarge su tanque)"
@@ -225,7 +220,7 @@ while True:
             +" ("+str("{:.2f}".format(distance_rec))+" km recorridos)"
             +" ("+str("{:.2f}".format(consumido))+" L de gasolina consumidos)"
             +" ("+str("{:.2f}".format(gasoVehiculo))+" L de gasolina restante)"
-            +" "+tiempoRec+"\n")
+            +" "+str("{:.2f}".format(tiempoRec))+"\n")
 
             bocinas.speak(each["narrative"] + " (" +str("{:.2f}".format(distance_remaining)) + " Kilometros faltantes)"
             +" ("+str("{:.2f}".format(distance_rec))+" Kilometros recorridos)"
@@ -234,6 +229,6 @@ while True:
             +" "+recomendaciones+recomendos)
             
             distance = distance_remaining
-            time.sleep(tiempoRec)        
+            #time.sleep(tiempoRec)        
         print("\nSi estará más de unos minutos estacionado recuerde apagar el motor.\n")
         bocinas.speak("Si estará más de unos minutos estacionado recuerde apagar el motor")
