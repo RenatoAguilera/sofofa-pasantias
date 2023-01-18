@@ -26,6 +26,7 @@ buscaCombustible = str(input("Ingrese el tipo de convustible de su vehículo: ")
 filtroV = df[(df["Marca"]==buscaMarca) & (df["Modelo"]==buscaModelo) & (df["Clase Vehiculo"]==buscaClase) 
 & (df["Cilindros"]==buscaCilindros) & (df["Transmicion"]==buscaTransmicion) & (df["Tipo Fuel"]==buscaCombustible)]
 #ejemplo Toyota, Camry AWD SE, Mid-size, 4, AS8, X, 9.4, 6.8
+
 print("-------------------------------------------------------------------------")
 while True:
     try:
@@ -164,7 +165,7 @@ while True:
             distance_rec = distance - distance_remaining
             consumido = porKm * distance_rec
             gasoVehiculo = gasoVehiculo - consumido
-            tiempoRec = distance_remaining * 60 #por tener una velocidad
+            #tiempoRec = distance_rec * 60 #por tener una velocidad
             
             if gasoVehiculo < gasoVehiculo*15/100:
                 recomendaciones = "(¡Su gasolina estará llegando a niveles criticos!, por favor recarge su tanque)"
@@ -225,7 +226,7 @@ while True:
             +" ("+str("{:.2f}".format(distance_rec))+" km recorridos)"
             +" ("+str("{:.2f}".format(consumido))+" L de gasolina consumidos)"
             +" ("+str("{:.2f}".format(gasoVehiculo))+" L de gasolina restante)"
-            +" "+str("{:.2f}".format(tiempoRec))+"\n")
+            +" "+recomendaciones+"\n")
 
             bocinas.speak(each["narrative"] + " (" +str("{:.2f}".format(distance_remaining)) + " Kilometros faltantes)"
             +" ("+str("{:.2f}".format(distance_rec))+" Kilometros recorridos)"
