@@ -172,10 +172,10 @@ while True:
             else:
                 recomendaciones = ""
             #reduccion de velocidad al abansar muy rapido o a destiempo
-            if gasoVehiculo:
-                recomendos = ""
-            else:
-                recomendos = ""
+            #if gasoVehiculo:
+            #    recomendos = ""
+            #else:
+            #    recomendos = ""
                        
             each["narrative"] = each["narrative"].replace("Head toward", "Dirigete a")
             each["narrative"] = each["narrative"].replace("Continue on", "Continua por")
@@ -232,7 +232,7 @@ while True:
             +" ("+str("{:.2f}".format(distance_rec))+" Kilometros recorridos)"
             +" ("+str("{:.2f}".format(consumido))+" Litros de gasolina consumidos)"
             +" ("+str("{:.2f}".format(gasoVehiculo))+" Litros de gasolina restante)"
-            +" "+recomendaciones+recomendos)
+            +" "+recomendaciones)
             
             distance = distance_remaining
             #time.sleep(tiempoRec)        
