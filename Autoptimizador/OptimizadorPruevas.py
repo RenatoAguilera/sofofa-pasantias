@@ -14,8 +14,7 @@ df.columns = ['Año Modelo','Marca','Modelo','Clase Vehiculo','Tamaño Maquina(L
 'Consumo Fuel(Consumo Combinado(mpg(millas por galon))','CO2 emiciones(g/km)','CO2 Rating','Smog Rating']
 
 #seleccionar veiculo
-
-buscaMarca = str(input("Ingrese la marca de su vehículo: "))
+buscaMarca=str(input("Ingrese la marca de su vehículo: "))
 buscaModelo = str(input("Ingrese el modelo de su vehículo: ")) 
 buscaClase = str(input("Ingrese la clase de su vehículo: "))
 buscaCilindros = int(input("Ingrese la cantida de cilindros de su vehículo: ")) 
