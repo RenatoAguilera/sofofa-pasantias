@@ -221,24 +221,24 @@ while True:
             each["narrative"] = each["narrative"].replace("Make a U", "Has una U")
             
             #ejemplo Toyota, Camry AWD SE, Mid-size, 4, AS8, X, 9.4, 6.8
-            if gasoVehiculo <= 0:
-                print(each["narrative"] + " (" +str("{:.2f}".format(distance_remaining)) + " km faltantes)"
-                +" ("+str("{:.2f}".format(distance_rec))+" km recorridos)"
-                +" ("+str("{:.2f}".format(consumido))+" L de gasolina consumidos)"
-                +" ("+str("{:.2f}".format(gasoVehiculo))+" L de gasolina restante)"
-                +" "+recomendaciones+"\n")
-
-                bocinas.speak(each["narrative"] + " (" +str("{:.2f}".format(distance_remaining)) + " Kilometros faltantes)"
-                +" ("+str("{:.2f}".format(distance_rec))+" Kilometros recorridos)"
-                +" ("+str("{:.2f}".format(consumido))+" Litros de gasolina consumidos)"
-                +" ("+str("{:.2f}".format(gasoVehiculo))+" Litros de gasolina restante)"
-                +" "+recomendaciones)
+            print(each["narrative"] + " (" +str("{:.2f}".format(distance_remaining)) + " km faltantes)"
+            +" ("+str("{:.2f}".format(distance_rec))+" km recorridos)"
+            +" ("+str("{:.2f}".format(consumido))+" L de gasolina consumidos)"
+            +" ("+str("{:.2f}".format(gasoVehiculo))+" L de gasolina restante)"
+            +" "+recomendaciones+"\n")
             
-                distance = distance_remaining
-                #time.sleep(tiempoRec)   
-            else:
-                print("¡Sin gasolina!, recarge su tanque")
-                bocinas.speak("¡Sin gasolina!, recarge su tanque")
-                break   
-        print("\nSi estará más de unos minutos estacionado recuerde apagar el motor.\n")
-        bocinas.speak("Si estará más de unos minutos estacionado recuerde apagar el motor")
+            bocinas.speak(each["narrative"] + " (" +str("{:.2f}".format(distance_remaining)) + " Kilometros faltantes)"
+            +" ("+str("{:.2f}".format(distance_rec))+" Kilometros recorridos)"
+            +" ("+str("{:.2f}".format(consumido))+" Litros de gasolina consumidos)"
+            +" ("+str("{:.2f}".format(gasoVehiculo))+" Litros de gasolina restante)"
+            +" "+recomendaciones)
+            
+            distance = distance_remaining
+            #time.sleep(tiempoRec) 
+            if distance_remaining == 0:
+                print("\nSi estará más de unos minutos estacionado recuerde apagar el motor.\n")
+                bocinas.speak("Si estará más de unos minutos estacionado recuerde apagar el motor")
+            if gasoVehiculo <= 0:
+                print("\n¡Sin gasolina!, recarga tu tanque.")  
+                bocinas.speak("¡Sin gasolina!, recarga tu tanque.")
+                break
