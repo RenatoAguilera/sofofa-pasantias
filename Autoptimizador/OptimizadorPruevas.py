@@ -125,13 +125,14 @@ while True:
                 bocinas.speak("Manten en lo posible una velocidad uniforme durante el trayecto, evita frenazos, aceleraciones y cambios innecesarios")
                 bocinas.speak("Para desacelerar levantar el pie del acelerador y dejar andar el vehículo con el cambio puesto, sin reducirlo")
                 bocinas.speak("Y para frenar haslo suave y progresivo con el pedal de freno y reduce el cambio lo más tarde posible")
+
                 break
             if indicacionesIn == "no":
                 bocinas.speak("obteniedo ruta")
                 break
 
         print("---------------------------------------------------------------------------")
-
+        """
         localizacion1 = origin
         print("Primer punto -> " , localizacion1)
         location1 = app.geocode(localizacion1).raw
@@ -158,6 +159,7 @@ while True:
         map.add_child(folium.Marker(punto2, popup=localizacion2, icon=folium.Icon(color='red', icon="flag-checkered", prefix="fa")))
 
         map.save("map.html")
+        """
         print("---------------------------------------------------------------------------")
         for each in json_data["route"]["legs"][0]["maneuvers"]:
             distance_remaining = distance - each["distance"]*1.61
@@ -225,14 +227,14 @@ while True:
             +" ("+str("{:.2f}".format(consumido))+" L de gasolina consumidos)"
             +" ("+str("{:.2f}".format(gasoVehiculo))+" L de gasolina restante)"
             +" "+recomendaciones+"\n")
-            
+
             bocinas.speak(each["narrative"] + " (" +str("{:.2f}".format(distance_remaining)) + " Kilometros faltantes)"
             +" ("+str("{:.2f}".format(distance_rec))+" Kilometros recorridos)"
             +" ("+str("{:.2f}".format(consumido))+" Litros de gasolina consumidos)"
             +" ("+str("{:.2f}".format(gasoVehiculo))+" Litros de gasolina restante)"
-            +" "+recomendaciones)
-            
+            +" "+recomendaciones)            
             distance = distance_remaining
+
             #time.sleep(tiempoRec) 
             if distance_remaining == 0:
                 print("\nSi estará más de unos minutos estacionado recuerde apagar el motor.\n")
