@@ -104,7 +104,6 @@ while True:
         bocinas.speak("¿Desea escuchar unas indicaciones generales antes de comenzar?")
         while True:
             indicacionesIn = input(str("¿si o no?: ")) 
-            print("\n")
 
             indicacionesIn = indicacionesIn.lower()
             if indicacionesIn == "si":
@@ -131,25 +130,25 @@ while True:
                 bocinas.speak("obteniedo ruta")
                 break
 
-        print("---------------------------------------------------------------------------")
+        #print("---------------------------------------------------------------------------")
         
         localizacion1 = origin
-        print("Primer punto -> " , localizacion1)
+        #print("Primer punto -> " , localizacion1)
         location1 = app.geocode(localizacion1).raw
         latitude1 = location1["lat"]
         longitude1 = location1["lon"]
         punto1 = (latitude1, longitude1)
 
-        print(punto1)
+        #print(punto1)
         localizacion2 = destination
-        print("Segundo punto -> " , localizacion2)
+        #print("Segundo punto -> " , localizacion2)
 
         location2 = app.geocode(localizacion2).raw
         latitude2 = location2["lat"]
         longitude2 = location2["lon"]
 
         punto2 = (latitude2, longitude2)
-        print(punto2)
+        #print(punto2)
         map = folium.Map(localizacion1=[latitude1, longitude1], zoom_start=1)
 
         # Punto 1
@@ -169,7 +168,7 @@ while True:
             #tiempoRec = distance_rec * 60 #por tener una velocidad
             
             if gasoVehiculo < gasoVehiculo*15/100:
-                recomendaciones = "(¡Su gasolina estará llegando a niveles criticos!, por favor recarge su tanque)"
+                recomendaciones = " (¡Su gasolina estará llegando a niveles criticos!, por favor recarge su tanque)"
             else:
                 recomendaciones = ""
             #reduccion de velocidad al abansar muy rapido o a destiempo
@@ -222,21 +221,22 @@ while True:
             each["narrative"] = each["narrative"].replace("Make a U", "Has una U")
             
             #ejemplo Toyota, Camry AWD SE, Mid-size, 4, AS8, X, 9.4, 6.8
+            
             print(each["narrative"] + " (" +str("{:.2f}".format(distance_remaining)) + " km faltantes)"
-            +" ("+str("{:.2f}".format(distance_rec))+" km recorridos)"
+            #+" ("+str("{:.2f}".format(distance_rec))+" km recorridos)"
             +" ("+str("{:.2f}".format(consumido))+" L de gasolina consumidos)"
             +" ("+str("{:.2f}".format(gasoVehiculo))+" L de gasolina restante)"
-            +" "+recomendaciones+"\n")
+            +recomendaciones+"\n")
 
             bocinas.speak(each["narrative"] + " (" +str("{:.2f}".format(distance_remaining)) + " Kilometros faltantes)"
-            +" ("+str("{:.2f}".format(distance_rec))+" Kilometros recorridos)"
+            #+" ("+str("{:.2f}".format(distance_rec))+" Kilometros recorridos)"
             +" ("+str("{:.2f}".format(consumido))+" Litros de gasolina consumidos)"
             +" ("+str("{:.2f}".format(gasoVehiculo))+" Litros de gasolina restante)"
-            +" "+recomendaciones)            
+            +recomendaciones)            
             distance = distance_remaining
 
             #time.sleep(tiempoRec) 
-            if distance_remaining == 0:
+            if distance_remaining < 0:
                 print("\nSi estará más de unos minutos estacionado recuerde apagar el motor.\n")
                 bocinas.speak("Si estará más de unos minutos estacionado recuerde apagar el motor")
             if gasoVehiculo <= 0:
