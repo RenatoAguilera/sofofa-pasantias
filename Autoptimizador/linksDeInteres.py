@@ -28,3 +28,4 @@
 #https://www.consumovehicular.cl/consejos/conduccion
 #https://www.educacionvial.cl/categoria/material-estudio/claves-para-ahorrar-el-consumo-de-combustible
 #https://www.cursosgis.com/visualizar-mapas-con-python-y-la-libreria-folium/
+#https://flask.palletsprojects.com/en/2.2.x/quickstart/
