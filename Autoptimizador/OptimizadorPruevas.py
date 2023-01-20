@@ -132,7 +132,7 @@ while True:
                 break
 
         print("---------------------------------------------------------------------------")
-        """
+        
         localizacion1 = origin
         print("Primer punto -> " , localizacion1)
         location1 = app.geocode(localizacion1).raw
@@ -159,7 +159,7 @@ while True:
         map.add_child(folium.Marker(punto2, popup=localizacion2, icon=folium.Icon(color='red', icon="flag-checkered", prefix="fa")))
 
         map.save("map.html")
-        """
+        
         print("---------------------------------------------------------------------------")
         for each in json_data["route"]["legs"][0]["maneuvers"]:
             distance_remaining = distance - each["distance"]*1.61
