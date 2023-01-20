@@ -14,6 +14,7 @@ df.columns = ['Año Modelo','Marca','Modelo','Clase Vehiculo','Tamaño Maquina(L
 'Consumo Fuel(Consumo Combinado(mpg(millas por galon))','CO2 emiciones(g/km)','CO2 Rating','Smog Rating']
 
 #seleccionar veiculo
+
 buscaMarca=str(input("Ingrese la marca de su vehículo: "))
 buscaModelo = str(input("Ingrese el modelo de su vehículo: ")) 
 buscaClase = str(input("Ingrese la clase de su vehículo: "))
@@ -42,7 +43,7 @@ else:
     gasoVehiculo = gasoVehiculo*1.0
 
 while True:
-    estado = str(input("¿Estás en la ciudad o en la carretera?: "))
+    estado = "ciudad" #str(input("¿Estás en la ciudad o en la carretera?: "))
     estado = estado.lower()
     #calculo gasto conbustible por ciudad
     if estado == "ciudad":
@@ -52,12 +53,14 @@ while True:
         porKm = a/100
         break
     #calculo gasto conbustible por carretera
+    """
     if estado == "carretera":
         consumo = filtroV['Consumo Fuel(ciudad(L/100km)']
         index_consumo = consumo.index.values[0]
         a = df.loc[index_consumo,'Consumo Fuel(carretera(L/100km)']
         porKm = a/100
         break
+    """
             
 print("-------------------------------------------------------------------------")
 
@@ -221,7 +224,7 @@ while True:
             each["narrative"] = each["narrative"].replace("Make a U", "Has una U")
             
             #ejemplo Toyota, Camry AWD SE, Mid-size, 4, AS8, X, 9.4, 6.8
-            
+        
             print(each["narrative"] + " (" +str("{:.2f}".format(distance_remaining)) + " km faltantes)"
             #+" ("+str("{:.2f}".format(distance_rec))+" km recorridos)"
             +" ("+str("{:.2f}".format(consumido))+" L de gasolina consumidos)"
