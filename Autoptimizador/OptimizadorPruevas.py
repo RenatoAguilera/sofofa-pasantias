@@ -7,7 +7,8 @@ import time
 import win32com.client
 bocinas = win32com.client.Dispatch("SAPI.spVoice")
 
-df = pd.read_csv('H:\Autooptimizador\MY2022 Fuel Consumption Ratings.csv')
+df = pd.read_csv('MY2022 Fuel Consumption Ratings.csv')
+dfe = pd.read_csv('csv_simple_vehiculos.csv')
 
 df.columns = ['Año Modelo','Marca','Modelo','Clase Vehiculo','Tamaño Maquina(L)','Cilindros','Transmicion',
 'Tipo Fuel','Consumo Fuel(ciudad(L/100km)','Consumo Fuel(carretera(L/100km)','Consumo Fuel(Consumo Combinado(L/100km)',
