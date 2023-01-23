@@ -3,137 +3,17 @@ import folium
 from geopy.distance import geodesic
 from geopy.geocoders import Nominatim
 app = Nominatim(user_agent="tycgis")
-import time
 import win32com.client
 bocinas = win32com.client.Dispatch("SAPI.spVoice")
 
-#df = pd.read_csv('MY2022 Fuel Consumption Ratings.csv')
-dfe = pd.read_csv('csvveiculos.csv')
-"""
-df.columns = ['Año Modelo','Marca','Modelo','Clase Vehiculo','Tamaño Maquina(L)','Cilindros','Transmicion',
-'Tipo Fuel','Consumo Fuel(ciudad(L/100km)','Consumo Fuel(carretera(L/100km)','Consumo Fuel(Consumo Combinado(L/100km)',
-'Consumo Fuel(Consumo Combinado(mpg(millas por galon))','CO2 emiciones(g/km)','CO2 Rating','Smog Rating']
-"""
+dfe = pd.read_csv('../sofofa-pasantias/Autoptimizador/csvveiculos.csv')
 
 #seleccionar veiculo
 #Filtro por marca
-while True:
-    buscaCoche=str(input("Ingrese la marca de su vehículo: "))
-    buscaCoche=buscaCoche.lower()
-    if buscaCoche == "acura":
-        filtro=dfe[(dfe["Marca"]=="Acura")]
-        break
-    if buscaCoche == "alfa romeo":
-        filtro=dfe[(dfe["Marca"]=="Alfa Romeo")]
-        break
-    if buscaCoche == "audi":
-        filtro=dfe[(dfe["Marca"]=="Audi")]
-        break
-    if buscaCoche == "bmw":
-        filtro=dfe[(dfe["Marca"]=="BMW")]
-        break
-    if buscaCoche == "bentley":
-        filtro=dfe[(dfe["Marca"]=="Bentley")]
-        break
-    if buscaCoche == "bugatti":
-        filtro=dfe[(dfe["Marca"]=="Bugatti")]
-        break
-    if buscaCoche == "buick":
-        filtro=dfe[(dfe["Marca"]=="Buick")]
-        break
-    if buscaCoche == "cadillac":
-        filtro=dfe[(dfe["Marca"]=="Cadillac")]
-        break
-    if buscaCoche == "chevrolet":
-        filtro=dfe[(dfe["Marca"]=="Chevrolet")]
-        break
-    if buscaCoche == "chrysler":
-        filtro=dfe[(dfe["Marca"]=="Chrysler")]
-        break
-    if buscaCoche == "dodge":
-        filtro=dfe[(dfe["Marca"]=="Dodge")]
-        break
-    if buscaCoche == "fiat":
-        filtro=dfe[(dfe["Marca"]=="FIAT")]
-        break
-    if buscaCoche == "ford":
-        filtro=dfe[(dfe["Marca"]=="Ford")]
-        break
-    if buscaCoche == "gmc":
-        filtro=dfe[(dfe["Marca"]=="GMC")]
-        break
-    if buscaCoche == "genesis":
-        filtro=dfe[(dfe["Marca"]=="Genesis")]
-        break
-    if buscaCoche == "honda":
-        filtro=dfe[(dfe["Marca"]=="Honda")]
-        break
-    if buscaCoche == "hyundai":
-        filtro=dfe[(dfe["Marca"]=="Hyundai")]
-        break
-    if buscaCoche == "infiniti":
-        filtro=dfe[(dfe["Marca"]=="Infiniti")]
-        break
-    if buscaCoche == "jaguar":
-        filtro=dfe[(dfe["Marca"]=="Jaguar")]
-        break
-    if buscaCoche == "jeep":
-        filtro=dfe[(dfe["Marca"]=="Jeep")]
-        break
-    if buscaCoche == "kia":
-        filtro=dfe[(dfe["Marca"]=="Kia")]
-        break
-    if buscaCoche == "lamborghini":
-        filtro=dfe[(dfe["Marca"]=="Lamborghini")]
-        break
-    if buscaCoche == "land rover":
-        filtro=dfe[(dfe["Marca"]=="Land Rover")]
-        break
-    if buscaCoche == "lexus":
-        filtro=dfe[(dfe["Marca"]=="Lexus")]
-        break
-    if buscaCoche == "lincoln":
-        filtro=dfe[(dfe["Marca"]=="Lincoln")]
-        break
-    if buscaCoche == "mini":
-        filtro=dfe[(dfe["Marca"]=="MINI")]
-        break
-    if buscaCoche == "maserati":
-        filtro=dfe[(dfe["Marca"]=="Maserati")]
-        break
-    if buscaCoche == "mazda":
-        filtro=dfe[(dfe["Marca"]=="Mazda")]
-        break
-    if buscaCoche == "mercedes-benz":
-        filtro=dfe[(dfe["Marca"]=="Mercedes-Benz")]
-        break
-    if buscaCoche == "mitsubishi":
-        filtro=dfe[(dfe["Marca"]=="Mitsubishi")]
-        break
-    if buscaCoche == "nissan":
-        filtro=dfe[(dfe["Marca"]=="Nissan")]
-        break
-    if buscaCoche == "porsche":
-        filtro=dfe[(dfe["Marca"]=="Porsche")]
-        break
-    if buscaCoche == "ram":
-        filtro=dfe[(dfe["Marca"]=="Ram")]
-        break
-    if buscaCoche == "rolls-royce":
-        filtro=dfe[(dfe["Marca"]=="Rolls-Royce")]
-        break
-    if buscaCoche == "subaru":
-        filtro=dfe[(dfe["Marca"]=="Subaru")]
-        break
-    if buscaCoche == "toyota":
-        filtro=dfe[(dfe["Marca"]=="Toyota")]
-        break
-    if buscaCoche == "volkswagen":
-        filtro=dfe[(dfe["Marca"]=="Volkswagen")]
-        break
-    if buscaCoche == "volvo":
-        filtro=dfe[(dfe["Marca"]=="Volvo")]
-        break
+buscaCoche=str(input("Ingrese la marca de su vehículo: "))
+buscaCoche=buscaCoche.lower()
+dfe["Marca"] = dfe["Marca"].str.lower()
+filtro = dfe[(dfe["Marca"]==buscaCoche)]
 
 print("-------------------------------------------------------------------------")
 while True:
@@ -150,16 +30,13 @@ if gasoVehiculo > 120.0:
 else:
     gasoVehiculo = gasoVehiculo*1.0
 
-while True:
-    estado = "ciudad" #str(input("¿Estás en la ciudad o en la carretera?: "))
-    estado = estado.lower()
-    #calculo gasto conbustible por ciudad
-    if estado == "ciudad":
-        consumo = filtro['Consumo Fuel(ciudad(L/100km)']
-        index_consumo = consumo.index.values[0]#saca el elemnto
-        a = dfe.loc[index_consumo,'Consumo Fuel(ciudad(L/100km)']
-        porKm = a/100
-        break
+estado = "ciudad"
+#calculo gasto conbustible por ciudad
+if estado == "ciudad":
+    consumo = filtro['Consumo Fuel(ciudad(L/100km)']
+    index_consumo = consumo.index.values[0]#saca el elemnto
+    a = dfe.loc[index_consumo,'Consumo Fuel(ciudad(L/100km)']
+    porKm = a/100
             
 print("-------------------------------------------------------------------------")
 
@@ -312,14 +189,14 @@ while True:
             each["narrative"] = each["narrative"].replace(" left.", " a la izquierda.")
             each["narrative"] = each["narrative"].replace(" Go for", " Continua por")
             each["narrative"] = each["narrative"].replace("Take ramp", "Toma la rampa")
-            each["narrative"] = each["narrative"].replace("Head northeast", "Dirigete al noreste")
-            each["narrative"] = each["narrative"].replace("Head north", "Dirigete al norte")
-            each["narrative"] = each["narrative"].replace("Head northwest", "Dirigete al noroeste")
-            each["narrative"] = each["narrative"].replace("Head south", "Dirigete al sur")
-            each["narrative"] = each["narrative"].replace("Head southeast", "Dirigete al sudeste")
-            each["narrative"] = each["narrative"].replace("Head southwest", "Dirigete al sudoeste")
-            each["narrative"] = each["narrative"].replace("Head west", "Dirigete al oeste")
-            each["narrative"] = each["narrative"].replace("Head east", "Dirigete al este")
+            each["narrative"] = each["narrative"].replace("Head northeast ", "Dirigete al noreste ")
+            each["narrative"] = each["narrative"].replace("Head north ", "Dirigete al norte ")
+            each["narrative"] = each["narrative"].replace("Head northwest ", "Dirigete al noroeste ")
+            each["narrative"] = each["narrative"].replace("Head south ", "Dirigete al sur ")
+            each["narrative"] = each["narrative"].replace("Head southeast ", "Dirigete al sudeste ")
+            each["narrative"] = each["narrative"].replace("Head southwest ", "Dirigete al sudoeste ")
+            each["narrative"] = each["narrative"].replace("Head west ", "Dirigete al oeste ")
+            each["narrative"] = each["narrative"].replace("Head east ", "Dirigete al este ")
             each["narrative"] = each["narrative"].replace("Make a U", "Has una U")
             
             #ejemplo Toyota, Camry AWD SE, Mid-size, 4, AS8, X, 9.4, 6.8
