@@ -1,21 +1,23 @@
-html, body { 
-    height:100%; 
+body{
+    display: flex;
+}
+* {
     margin:0;
     padding:0;
-  }
-  
-  .contenedor {
-    display:flex;
-    flex-direction: column;
-    min-height:100%;
-  }
-  
-  .contenedor > div {
-    flex:1;
-    display:flex;
-  }
-  
-  .inputs { background:rgba(0,0,0,0.3); }
-  .fila1 { background:rgba(255,0,0,0.3); }
+    }
+    #inputs {
+    position:absolute;
+    top:0px;
+    left:0px;
+    width:200px;
+    margin-top:10px;
+    background-color:#ffff55;
+    }
+    #columna2 {
+    margin-left:220px;
+    margin-right:20px;
+    margin-top:10px;
+    background-color:#ffffbb;
+    }
   
   
