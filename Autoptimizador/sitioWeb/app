@@ -1,10 +1,19 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
 @app.route("/")
 def home():
     return render_template("index.html")
+@app.route("/predecir", methods=['POST'])
+def predecir():
+    marca = str(request.form['marca'])
+    gasolina = int(request.form['gasolina'])
+    ubicacion = str(request.form['ubicacion'])
+    destino = str(request.form['destino'])
+    siNo = str(request.form['siNo'])
+
+    return render_template('index.html', prediccion_texto=f'vehiculo marca {marca}')
     
 if __name__ == "__main__":
     app.run()
