@@ -9,8 +9,8 @@
 </head>
 <body>
 <header ><h1>Autoptimizador</h1></header>
-
-<div id="columna1">
+<div id="contenedor">
+<div class="col1">
     <p>Ingresa los datos de tu veiculo, tu ubicacion y destino</p>
     <form action="{{url_for('predecir')}}" method="post">
         <input type="text" name="marca" placeholder="Marca de tu vahiculo" required="required">
@@ -22,10 +22,19 @@
 
     </form>
 </div>
-<div id="columna2">
+<div class="col2">
+    <p>Ingresa los datos de tu veiculo, tu ubicacion y destino</p>
+    <form action="{{url_for('predecir')}}" method="post">
+        <input type="text" name="marca" placeholder="Marca de tu vahiculo" required="required">
+        <input type="number" name="gasolina" placeholder="Cantidad de vencina" required="required">
+        <input type="text" name="ubicacion" placeholder="Tu ubucacion" required="required">
+        <input type="text" name="destino" placeholder="Tu destino" required="required">
+        <input type="text" name="siNo" placeholder="Escuchar indicaciones basicas antes de partir(si o no)" required="required">
+        <button type="submit" class="botonera">Crear ruta</button>
 
+    </form>
 </div>
-
+</div>
 <br>
 <br>
 {{ prediccion_texto }}
