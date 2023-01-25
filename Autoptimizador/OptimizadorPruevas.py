@@ -78,9 +78,10 @@ while True:
 
         print("---------------------------------------------------------------------------")
         print("Indicacioens del Viaje\n")
-        
-        print("¿Desea ver escuchar indicaciones generales antes de comenzar?\n")
+
         bocinas.speak("¿Desea escuchar unas indicaciones generales antes de comenzar?")
+        print("¿Desea ver escuchar indicaciones generales antes de comenzar?\n")  
+          
         while True:
             indicacionesIn = input(str("¿si o no?: ")) 
 
@@ -128,7 +129,7 @@ while True:
 
         punto2 = (latitude2, longitude2)
         #print(punto2)
-        map = folium.Map(localizacion1=[latitude1, longitude1], zoom_start=1)
+        map = folium.Map(localizacion1=[latitude1, longitude1], zoom_start=16)
 
         # Punto 1
         map.add_child(folium.Marker(punto1, popup=localizacion1, icon=folium.Icon(color='green', icon="car-side", prefix="fa")))
@@ -215,7 +216,7 @@ while True:
             distance = distance_remaining
 
             #time.sleep(tiempoRec) 
-            if distance_remaining < 0:
+            if (distance_remaining <= 0) & (consumido <= 0):
                 print("\nSi estará más de unos minutos estacionado recuerde apagar el motor.\n")
                 bocinas.speak("Si estará más de unos minutos estacionado recuerde apagar el motor")
             if gasoVehiculo <= 0:
