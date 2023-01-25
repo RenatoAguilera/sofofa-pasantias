@@ -3,20 +3,23 @@ header{
 }
 * {
     margin:0;
-    padding:0;
+    padding:0; 
+    text-align: center;
     }
-    #columna1 {
+    .col1 {
     position:absolute;
     top:0px;
-    left:0px;
-    width:20rem;
-    margin-top:50px;
+    left:1rem;
+    width:40rem;
+    height: 70rem;
+    margin-top:4rem;
     background-color:#ffff55;
     }
-    #columna2 {
-    margin-left:22rem;
-    margin-right:20px;
-    width:20rem;
-    margin-top:10px;
+    .col2 {
+    margin-left:43rem;
+    margin-right:2rem;
+    width:40rem;
+    height: 70rem;
+    margin-top:1.5rem;
     background-color:#ffffbb;
     }
