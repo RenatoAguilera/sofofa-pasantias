@@ -79,9 +79,9 @@ while True:
         print("---------------------------------------------------------------------------")
         print("Indicacioens del Viaje\n")
 
-        bocinas.speak("¿Desea escuchar unas indicaciones generales antes de comenzar?")
+        
         print("¿Desea ver escuchar indicaciones generales antes de comenzar?\n")  
-          
+        bocinas.speak("¿Desea escuchar unas indicaciones generales antes de comenzar?")  
         while True:
             indicacionesIn = input(str("¿si o no?: ")) 
 
@@ -99,7 +99,7 @@ while True:
                 bocinas.speak("Antes que nada arranca el motor sin pisar el acelerador y comienza en primera")
                 bocinas.speak("Cambia a segunda despues de avanzar unos 6 metros o unos 2 segundos aprox")
                 bocinas.speak("Realiza los cambios entre tercera, cuarta y quinta cada 2000 revoluciones por minuto aprox")
-                bocinas.speak("Si te guias más por la velocidad cambia a tercera a los 30 kilometros por hora, a cuarta a los 40 kilometros por hora, a quinta a los 50 kilometros por hora")
+                #bocinas.speak("Si te guias más por la velocidad cambia a tercera a los 30 kilometros por hora, a cuarta a los 40 kilometros por hora, a quinta a los 50 kilometros por hora")
                 bocinas.speak("Recueda circular en cuarta y quinta a bajas revoluciones")
                 bocinas.speak("Manten en lo posible una velocidad uniforme durante el trayecto, evita frenazos, aceleraciones y cambios innecesarios")
                 bocinas.speak("Para desacelerar levantar el pie del acelerador y dejar andar el vehículo con el cambio puesto, sin reducirlo")
@@ -138,6 +138,7 @@ while True:
         map.add_child(folium.Marker(punto2, popup=localizacion2, icon=folium.Icon(color='red', icon="flag-checkered", prefix="fa")))
 
         map.save("map.html")
+        
         
         print("---------------------------------------------------------------------------")
         for each in json_data["route"]["legs"][0]["maneuvers"]:
@@ -203,16 +204,17 @@ while True:
             #ejemplo Toyota, Camry AWD SE, Mid-size, 4, AS8, X, 9.4, 6.8
         
             print(each["narrative"] + " (" +str("{:.2f}".format(distance_remaining)) + " km faltantes)"
-            #+" ("+str("{:.2f}".format(distance_rec))+" km recorridos)"
+            +" ("+str("{:.2f}".format(distance_rec))+" km recorridos)"
             +" ("+str("{:.2f}".format(consumido))+" L de gasolina consumidos)"
             +" ("+str("{:.2f}".format(gasoVehiculo))+" L de gasolina restante)"
             +recomendaciones+"\n")
-
+            
+            """
             bocinas.speak(each["narrative"] + " (" +str("{:.2f}".format(distance_remaining)) + " Kilometros faltantes)"
             #+" ("+str("{:.2f}".format(distance_rec))+" Kilometros recorridos)"
             +" ("+str("{:.2f}".format(consumido))+" Litros de gasolina consumidos)"
             +" ("+str("{:.2f}".format(gasoVehiculo))+" Litros de gasolina restante)"
-            +recomendaciones)            
+            +recomendaciones) """           
             distance = distance_remaining
 
             #time.sleep(tiempoRec) 
