@@ -12,6 +12,7 @@
 <div id="contenedor">
 <div class="col1">
     <p>Ingresa los datos de tu veiculo, tu ubicacion y destino</p>
+    <div class="imputs">
     <form action="{{url_for('predecir')}}" method="post">
         <input type="text" name="marca" placeholder="Marca de tu vahiculo" required="required">
         <input type="number" name="gasolina" placeholder="Cantidad de vencina" required="required">
@@ -21,8 +22,9 @@
         <button type="submit" class="botonera">Crear ruta</button>
 
     </form>
-    <br><br>
-    <img src="{{ user_image }}" alt="Mike" height="240px" width="300px">
+    </div>
+    <br<br>
+    <img src="{{ user_image }}" height="240px" width="300px">
 </div>
 <div class="col2">
     <p>Ingresa los datos de tu veiculo, tu ubicacion y destino</p>

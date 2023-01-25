@@ -4,7 +4,7 @@ header{
 * {
     margin:0;
     padding:0; 
-    text-align: center;
+    
     }
     .col1 {
     position:absolute;
@@ -13,7 +13,9 @@ header{
     width:40rem;
     height: 70rem;
     margin-top:4rem;
-    background-color:#ffff55;
+    padding: 0.5rem;
+    background-color:rgb(202, 202, 202);
+    text-align: center;
     }
     .col2 {
     margin-left:43rem;
@@ -21,5 +23,9 @@ header{
     width:40rem;
     height: 70rem;
     margin-top:1.5rem;
-    background-color:#ffffbb;
+    padding: 0.5rem;
+    background-color:rgb(202, 202, 202);
+    }
+    input{
+        margin-top: 0.5rem;
     }

@@ -2,23 +2,22 @@ from flask import Flask, render_template, request
 import os
 
 app = Flask(__name__)
-
-@app.route("/")
-def home():   
-    return render_template("index.html")
-@app.route("/")
-def style():   
-    return render_template("style.css")
-
 IMG_FOLDER = os.path.join('static', 'IMG')
 
 app.config['UPLOAD_FOLDER'] = IMG_FOLDER
-
 
 @app.route("/")
 def Display_IMG():
     Mapa_prueva = os.path.join(app.config['UPLOAD_FOLDER'], 'mapa.png')
     return render_template("index.html", user_image=Mapa_prueva)
+
+@app.route("/")
+def home():   
+    return render_template("index.html")
+
+@app.route("/")
+def style():   
+    return render_template("style.css")
 
     
 @app.route("/predecir", methods=['POST'])
