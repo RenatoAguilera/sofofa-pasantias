@@ -1,10 +1,13 @@
 header{
+    margin-top: 0.5rem;
     text-align: center;
+}
+body{
+    background-color: azure;
 }
 * {
     margin:0;
     padding:0; 
-    
     }
     .col1 {
     position:absolute;
@@ -14,7 +17,7 @@ header{
     height: 70rem;
     margin-top:4rem;
     padding: 0.5rem;
-    background-color:rgb(202, 202, 202);
+    background-color:rgb(250, 250, 229);
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -26,22 +29,30 @@ header{
     height: 70rem;
     margin-top:1.5rem;
     padding: 0.5rem;
-    background-color:rgb(202, 202, 202);
+    background-color:rgb(250, 250, 229);
     }
     input{
         margin-top: 0.5rem;
         display: flex;
         flex-direction: column;
         text-align: center;
-        margin-left: 0.5rem
-        margin-right: 0.5rem;
+        margin-left: 5rem;
+        margin-right: 5rem;
     }
     button{
         margin-top: 1rem;
-        margin-bottom: 0.5rem;
+        margin-bottom: 1rem;
+        margin-left: 10rem;
+        margin-right: 10rem;
     }
     form{
+        margin-top: 1.2rem;
         display: flex;
         flex-direction: column;
         text-align: center;
+    }
+    .col1 p{
+        margin-top: 1rem;
+        font-size: 1.4rem;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     }

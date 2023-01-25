@@ -19,6 +19,13 @@ def home():
 def style():   
     return render_template("style.css")
 
+
+
+@app.route("/")
+def Optimizador():
+    return render_template("OptimizadorPruevas.py")
+
+
     
 @app.route("/predecir", methods=['POST'])
 def predecir():
