@@ -129,7 +129,7 @@ while True:
 
         punto2 = (latitude2, longitude2)
         #print(punto2)
-        map = folium.Map(localizacion1=[latitude1, longitude1], zoom_start=16)
+        map = folium.Map(localizacion1=[latitude1, longitude1], zoom_start=30)
 
         # Punto 1
         map.add_child(folium.Marker(punto1, popup=localizacion1, icon=folium.Icon(color='green', icon="car-side", prefix="fa")))
