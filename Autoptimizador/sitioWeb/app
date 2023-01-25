@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 import os
 
+
 app = Flask(__name__)
 IMG_FOLDER = os.path.join('static', 'IMG')
 

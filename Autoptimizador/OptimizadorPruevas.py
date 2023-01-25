@@ -146,17 +146,12 @@ while True:
             distance_rec = distance - distance_remaining
             consumido = porKm * distance_rec
             gasoVehiculo = gasoVehiculo - consumido
-            #tiempoRec = distance_rec * 60 #por tener una velocidad
             
             if gasoVehiculo < gasoVehiculo*15/100:
                 recomendaciones = " (¡Su gasolina estará llegando a niveles criticos!, por favor recarge su tanque)"
             else:
                 recomendaciones = ""
-            #reduccion de velocidad al abansar muy rapido o a destiempo
-            #if gasoVehiculo:
-            #    recomendos = ""
-            #else:
-            #    recomendos = ""
+
                        
             each["narrative"] = each["narrative"].replace("Head toward", "Dirigete a")
             each["narrative"] = each["narrative"].replace("Continue on", "Continua por")
@@ -201,8 +196,14 @@ while True:
             each["narrative"] = each["narrative"].replace("Head east ", "Dirigete al este ")
             each["narrative"] = each["narrative"].replace("Make a U", "Has una U")
             
-            #ejemplo Toyota, Camry AWD SE, Mid-size, 4, AS8, X, 9.4, 6.8
-        
+            if (distance_remaining <= 0) & (consumido <= 0):
+                print("\nSi estará más de unos minutos estacionado recuerde apagar el motor.\n")
+                bocinas.speak("Si estará más de unos minutos estacionado recuerde apagar el motor")
+            if gasoVehiculo <= 0:
+                print("\n¡Sin gasolina!, recarga tu tanque.")  
+                bocinas.speak("¡Sin gasolina!, recarga tu tanque.")
+                break
+            
             print(each["narrative"] + " (" +str("{:.2f}".format(distance_remaining)) + " km faltantes)"
             +" ("+str("{:.2f}".format(distance_rec))+" km recorridos)"
             +" ("+str("{:.2f}".format(consumido))+" L de gasolina consumidos)"
@@ -217,11 +218,4 @@ while True:
             +recomendaciones) """           
             distance = distance_remaining
 
-            #time.sleep(tiempoRec) 
-            if (distance_remaining <= 0) & (consumido <= 0):
-                print("\nSi estará más de unos minutos estacionado recuerde apagar el motor.\n")
-                bocinas.speak("Si estará más de unos minutos estacionado recuerde apagar el motor")
-            if gasoVehiculo <= 0:
-                print("\n¡Sin gasolina!, recarga tu tanque.")  
-                bocinas.speak("¡Sin gasolina!, recarga tu tanque.")
-                break
+            
