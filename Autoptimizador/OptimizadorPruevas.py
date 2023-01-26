@@ -183,13 +183,7 @@ while True:
             each["narrative"] = each["narrative"].replace("Head east ", "Dirigete al este ")
             each["narrative"] = each["narrative"].replace("Make a U", "Has una U")
             
-            if (distance_remaining <= 0) & (consumido <= 0):
-                print("\nSi estará más de unos minutos estacionado recuerde apagar el motor.\n")
-                bocinas.speak("Si estará más de unos minutos estacionado recuerde apagar el motor")
-            if gasoVehiculo <= 0:
-                print("\n¡Sin gasolina!, recarga tu tanque.")  
-                bocinas.speak("¡Sin gasolina!, recarga tu tanque.")
-                break
+            
             
             print(each["narrative"] + " (" +str("{:.2f}".format(distance_remaining)) + " km faltantes)"
             +" ("+str("{:.2f}".format(distance_rec))+" km recorridos)"
@@ -202,3 +196,11 @@ while True:
             +" ("+str("{:.2f}".format(gasoVehiculo))+" Litros de gasolina restante)"
             +recomendaciones)        
             distance = distance_remaining
+            
+            if (distance_remaining <= 0) & (consumido <= 0):
+                print("\nSi estará más de unos minutos estacionado recuerde apagar el motor.\n")
+                bocinas.speak("Si estará más de unos minutos estacionado recuerde apagar el motor")
+            if gasoVehiculo <= 0:
+                print("\n¡Sin gasolina!, recarga tu tanque.")  
+                bocinas.speak("¡Sin gasolina!, recarga tu tanque.")
+                break
