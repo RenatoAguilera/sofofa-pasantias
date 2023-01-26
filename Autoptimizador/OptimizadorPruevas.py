@@ -109,8 +109,6 @@ while True:
             if indicacionesIn == "no":
                 bocinas.speak("obteniedo ruta")
                 break
-
-        #print("---------------------------------------------------------------------------")
         
         localizacion1 = origin
         #print("Primer punto -> " , localizacion1)
@@ -210,12 +208,10 @@ while True:
             +" ("+str("{:.2f}".format(gasoVehiculo))+" L de gasolina restante)"
             +recomendaciones+"\n")
             
-            """
+            
             bocinas.speak(each["narrative"] + " (" +str("{:.2f}".format(distance_remaining)) + " Kilometros faltantes)"
             #+" ("+str("{:.2f}".format(distance_rec))+" Kilometros recorridos)"
             +" ("+str("{:.2f}".format(consumido))+" Litros de gasolina consumidos)"
             +" ("+str("{:.2f}".format(gasoVehiculo))+" Litros de gasolina restante)"
-            +recomendaciones) """           
+            +recomendaciones)        
             distance = distance_remaining
-
-            
