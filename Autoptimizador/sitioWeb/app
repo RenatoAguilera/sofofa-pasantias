@@ -11,8 +11,10 @@ import urllib
 import requests
 api_url = "http://www.mapquestapi.com/directions/v2/route?"
 key = "Pz3XNvlinhcIHMRgiNsjW0yJKPVyK6qA"
+dfe = pd.read_csv('../sofofa-pasantias/Autoptimizador/csvveiculos.csv')
 
-
+# entorno virtual =python -m venv sitioWeb
+# cd todo la ruta hasta sitioweb
 
 app = Flask(__name__)
 IMG_FOLDER = os.path.join('static', 'IMG')
@@ -36,7 +38,7 @@ def style():
 @app.route("/predecir", methods=['POST'])
 def predecir():
 
-    dfe = pd.read_csv('../sofofa-pasantias/Autoptimizador/csvveiculos.csv')
+    
     buscaCoche=str(request.form['marca'])
     buscaCoche=buscaCoche.lower()
     dfe["Marca"] = dfe["Marca"].str.lower()
@@ -106,7 +108,6 @@ def predecir():
                 print("Antes que nada, arranca el motor sin pisar el acelerador y comienza en 1ª")
                 print("Cambia a 2ª despues de avanzar unos 6 metros o unos 2 segundos aprox")
                 print("Realiza los cambios entre 3ª, 4ª y 5ª cada 2000 rpm aprox")
-                #print("Si te guias más por la velocidad cambia a 3ª a los 30 km/h, a 4ª a los 40 km/h, a 5ª a los 50 km/h")
                 print("Recueda circular en 4ª y 5ª a bajas revoluciones")
                 print("Manten en lo posible una velocidad uniforme durante el trayecto, evita frenazos, aceleraciones y cambios innecesarios.")
                 print("Para desacelerar levantar el pie del acelerador y dejar andar el vehículo con el cambio puesto, sin reducirlo")
@@ -177,12 +178,12 @@ def predecir():
             if gasoVehiculo <= 0:
                 print("\n¡Sin gasolina!, recarga tu tanque.")  
                 break 
-                   
+            
             return render_template('index.html', prediccion_texto= each['narrative'] + ' (' +str('{:.2f}'.format(distance_remaining)) + ' km faltantes)'
             +' ('+str('{:.2f}'.format(distance_rec))+' km recorridos)'
             +' ('+str('{:.2f}'.format(consumido))+' L de gasolina consumidos)'
             +' ('+str('{:.2f}'.format(gasoVehiculo))+' L de gasolina restante)'
-            +recomendaciones+'\n')               
+            +recomendaciones+'\n')
 
 #=======================================================================================================
 
