@@ -11,7 +11,7 @@ import urllib
 import requests
 api_url = "http://www.mapquestapi.com/directions/v2/route?"
 key = "Pz3XNvlinhcIHMRgiNsjW0yJKPVyK6qA"
-dfe = pd.read_csv('../sofofa-pasantias/Autoptimizador/csvveiculos.csv')
+
 
 
 app = Flask(__name__)
@@ -36,16 +36,20 @@ def style():
 @app.route("/predecir", methods=['POST'])
 def predecir():
 
-    #seleccionar veiculo
-    #Filtro por marca
+    dfe = pd.read_csv('../sofofa-pasantias/Autoptimizador/csvveiculos.csv')
     buscaCoche=str(request.form['marca'])
     buscaCoche=buscaCoche.lower()
     dfe["Marca"] = dfe["Marca"].str.lower()
     filtro = dfe[(dfe["Marca"]==buscaCoche)]
 
-    #print("--------------------------------------------------------------------------------------")
-
-    gasoVehiculo = int(request.form['gasolina'])
+    #=======================================================================================================
+    while True:
+        try:
+            gasoVehiculo = int(request.form['gasolina'])
+            if gasoVehiculo != "":
+                break
+        except ValueError:
+            print("Por favor, ingrese un valor valido. Ej: 69")
 
     if gasoVehiculo > 120.0:
         gasoVehiculo = gasoVehiculo/1000.0   
@@ -55,10 +59,10 @@ def predecir():
     estado = "ciudad"
     if estado == "ciudad":
         consumo = filtro['Consumo Fuel(ciudad(L/100km)']
-        index_consumo = consumo.index.values[0]#saca el elemnto
+        index_consumo = consumo.index.values[0]
         a = dfe.loc[index_consumo,'Consumo Fuel(ciudad(L/100km)']
         porKm = a/100
-    ##print("-------------------------------------------------------------------------------------")
+    #=======================================================================================================
     while True:
         origin = str(request.form['ubicacion'])
         if origin == 'q':
@@ -76,7 +80,7 @@ def predecir():
             trip_duration = json_data["route"]["formattedTime"]
             distance = json_data["route"]["distance"]*1.61
 
-        #print("---------------------------------------------------------------------------")
+        #=======================================================================================================
         
         print(f"Información del viaje desde {origin.capitalize()} hasta {destination.capitalize()}.")
         print(f"Duración del viaje: {trip_duration}")
@@ -86,22 +90,33 @@ def predecir():
         print("Nececitaras: "+str("{:.2f}".format(consumoNece)+"L de gasolina"))
         laFAfa = consumoNece*1349.40#precio medio convustible
         print("Necesitaras: $"+str("{:.2f}".format(laFAfa)+" aproximadamnte"))
+        
+        #recomendaciones
 
-        #print("---------------------------------------------------------------------------")
- 
-        @app.route("/indicaGene", methods=['POST'])
-        def indicaGene():  
-            while True:
-                indicacionesIn = str(request.form['siNo']) 
+        #=======================================================================================================
+        print("Indicacioens del Viaje\n")
 
-                indicacionesIn = indicacionesIn.lower()
-                if indicacionesIn == "si":
-                    return render_template('index.html', indicaciones_generales=f"Indicaciones Generales\nAntes que nada, arranca el motor sin pisar el acelerador y comienza en 1ª.\nCambia a 2ª despues de avanzar unos 6 metros o unos 2 segundos aprox.\nRealiza los cambios entre 3ª, 4ª y 5ª cada 2000 rpm aprox.\nRecueda circular en 4ª y 5ª a bajas revoluciones.\nManten en lo posible una velocidad uniforme durante el trayecto, evita frenazos, aceleraciones y cambios innecesarios.\nPara desacelerar levantar el pie del acelerador y dejar andar el vehículo con el cambio puesto, sin reducirlo.\nY para frenar haslo suave y progresivo con el pedal de freno y reduce el cambio lo más tarde posible")
-                if indicacionesIn == "no":
-                    return render_template('index.html', indicaciones_generales=f"obteniedo ruta")
-          
-       # print("---------------------------------------------------------------------------")
+        
+        print("¿Desea ver escuchar indicaciones generales antes de comenzar?\n")   
+        while True:
+            indicacionesIn = str(request.form['siNo']) 
 
+            indicacionesIn = indicacionesIn.lower()
+            if indicacionesIn == "si":
+                print("Antes que nada, arranca el motor sin pisar el acelerador y comienza en 1ª")
+                print("Cambia a 2ª despues de avanzar unos 6 metros o unos 2 segundos aprox")
+                print("Realiza los cambios entre 3ª, 4ª y 5ª cada 2000 rpm aprox")
+                #print("Si te guias más por la velocidad cambia a 3ª a los 30 km/h, a 4ª a los 40 km/h, a 5ª a los 50 km/h")
+                print("Recueda circular en 4ª y 5ª a bajas revoluciones")
+                print("Manten en lo posible una velocidad uniforme durante el trayecto, evita frenazos, aceleraciones y cambios innecesarios.")
+                print("Para desacelerar levantar el pie del acelerador y dejar andar el vehículo con el cambio puesto, sin reducirlo")
+                print("Y para frenar haslo suave y progresivo con el pedal de freno y reduce el cambio lo más tarde posible")
+                break
+            if indicacionesIn == "no":
+                print("obteniedo ruta")
+                break
+
+        #=======================================================================================================
         for each in json_data["route"]["legs"][0]["maneuvers"]:
             distance_remaining = distance - each["distance"]*1.61
             distance_rec = distance - distance_remaining
@@ -169,7 +184,7 @@ def predecir():
             +' ('+str('{:.2f}'.format(gasoVehiculo))+' L de gasolina restante)'
             +recomendaciones+'\n')               
 
-#-------------------------------------------------------------------------------------------------------------
+#=======================================================================================================
 
 if __name__ == "__main__":
     app.run()
