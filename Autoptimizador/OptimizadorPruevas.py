@@ -9,7 +9,6 @@ bocinas = win32com.client.Dispatch("SAPI.spVoice")
 dfe = pd.read_csv('../sofofa-pasantias/Autoptimizador/csvveiculos.csv')
 
 #seleccionar veiculo
-#Filtro por marca
 buscaCoche=str(input("Ingrese la marca de su vehículo: "))
 buscaCoche=buscaCoche.lower()
 dfe["Marca"] = dfe["Marca"].str.lower()
@@ -31,16 +30,15 @@ else:
     gasoVehiculo = gasoVehiculo*1.0
 
 estado = "ciudad"
-#calculo gasto conbustible por ciudad
 if estado == "ciudad":
     consumo = filtro['Consumo Fuel(ciudad(L/100km)']
-    index_consumo = consumo.index.values[0]#saca el elemnto
+    index_consumo = consumo.index.values[0]
     a = dfe.loc[index_consumo,'Consumo Fuel(ciudad(L/100km)']
     porKm = a/100
             
 print("-------------------------------------------------------------------------")
 
-#conseguir distancia 
+#conseguir distancia, ruta,etc...
 import urllib
 import requests
 api_url = "http://www.mapquestapi.com/directions/v2/route?"
@@ -71,7 +69,8 @@ while True:
         #gasolina requerida con precio
         consumoNece = distance*porKm
         print("Nececitaras: "+str("{:.2f}".format(consumoNece)+"L de gasolina"))
-        laFAfa = consumoNece*1349.40#precio medio convustible
+        #precio medio convustible
+        laFAfa = consumoNece*1349.40
         print("Necesitaras: $"+str("{:.2f}".format(laFAfa)+" aproximadamnte"))
         
         #recomendaciones
@@ -90,7 +89,6 @@ while True:
                 print("Antes que nada, arranca el motor sin pisar el acelerador y comienza en 1ª")
                 print("Cambia a 2ª despues de avanzar unos 6 metros o unos 2 segundos aprox")
                 print("Realiza los cambios entre 3ª, 4ª y 5ª cada 2000 rpm aprox")
-                #print("Si te guias más por la velocidad cambia a 3ª a los 30 km/h, a 4ª a los 40 km/h, a 5ª a los 50 km/h")
                 print("Recueda circular en 4ª y 5ª a bajas revoluciones")
                 print("Manten en lo posible una velocidad uniforme durante el trayecto, evita frenazos, aceleraciones y cambios innecesarios.")
                 print("Para desacelerar levantar el pie del acelerador y dejar andar el vehículo con el cambio puesto, sin reducirlo")
@@ -99,8 +97,6 @@ while True:
                 bocinas.speak("Antes que nada arranca el motor sin pisar el acelerador y comienza en primera")
                 bocinas.speak("Cambia a segunda despues de avanzar unos 6 metros o unos 2 segundos aprox")
                 bocinas.speak("Realiza los cambios entre tercera, cuarta y quinta cada 2000 revoluciones por minuto aprox")
-                #bocinas.speak("Si te guias más por la velocidad cambia a tercera a los 30 kilometros por hora, a cuarta a los 40 kilometros por hora, a quinta a los 50 kilometros por hora")
-                bocinas.speak("Recueda circular en cuarta y quinta a bajas revoluciones")
                 bocinas.speak("Manten en lo posible una velocidad uniforme durante el trayecto, evita frenazos, aceleraciones y cambios innecesarios")
                 bocinas.speak("Para desacelerar levantar el pie del acelerador y dejar andar el vehículo con el cambio puesto, sin reducirlo")
                 bocinas.speak("Y para frenar haslo suave y progresivo con el pedal de freno y reduce el cambio lo más tarde posible")
@@ -111,28 +107,22 @@ while True:
                 break
         
         localizacion1 = origin
-        #print("Primer punto -> " , localizacion1)
         location1 = app.geocode(localizacion1).raw
         latitude1 = location1["lat"]
         longitude1 = location1["lon"]
         punto1 = (latitude1, longitude1)
 
-        #print(punto1)
         localizacion2 = destination
-        #print("Segundo punto -> " , localizacion2)
 
         location2 = app.geocode(localizacion2).raw
         latitude2 = location2["lat"]
         longitude2 = location2["lon"]
 
         punto2 = (latitude2, longitude2)
-        #print(punto2)
         map = folium.Map(localizacion1=[latitude1, longitude1], zoom_start=30)
 
-        # Punto 1
         map.add_child(folium.Marker(punto1, popup=localizacion1, icon=folium.Icon(color='green', icon="car-side", prefix="fa")))
 
-        # Punto 2
         map.add_child(folium.Marker(punto2, popup=localizacion2, icon=folium.Icon(color='red', icon="flag-checkered", prefix="fa")))
 
         map.save("map.html")
@@ -149,8 +139,7 @@ while True:
                 recomendaciones = " (¡Su gasolina estará llegando a niveles criticos!, por favor recarge su tanque)"
             else:
                 recomendaciones = ""
-
-                       
+                 
             each["narrative"] = each["narrative"].replace("Head toward", "Dirigete a")
             each["narrative"] = each["narrative"].replace("Continue on", "Continua por")
             each["narrative"] = each["narrative"].replace("Turn right onto", "Gira a la derecha hacía")
@@ -208,9 +197,7 @@ while True:
             +" ("+str("{:.2f}".format(gasoVehiculo))+" L de gasolina restante)"
             +recomendaciones+"\n")
             
-            
             bocinas.speak(each["narrative"] + " (" +str("{:.2f}".format(distance_remaining)) + " Kilometros faltantes)"
-            #+" ("+str("{:.2f}".format(distance_rec))+" Kilometros recorridos)"
             +" ("+str("{:.2f}".format(consumido))+" Litros de gasolina consumidos)"
             +" ("+str("{:.2f}".format(gasoVehiculo))+" Litros de gasolina restante)"
             +recomendaciones)        
